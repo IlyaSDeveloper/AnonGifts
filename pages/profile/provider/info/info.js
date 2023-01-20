@@ -54,10 +54,10 @@ auth.onAuthStateChanged(user => {
         const file = evt.target.files[0] // upload the first file only
         const thisRef = storageRef.child(file.name)
         thisRef.put(file).then( res => {
-          storageRef.child(file.name).getDownloadURL().then(url => {
+          thisRef.getDownloadURL().then(url => {
             db.collection('users').doc(user.uid).set({
               photoURL: url
-            })
+            }, { merge: true })
           }).catch(e => console.log('Get link error' + e))
           console.log('Загрузка завершена!');
         }).catch(e => console.log('Error' + e))

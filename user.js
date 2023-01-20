@@ -31,8 +31,8 @@ export function signUp(logOnForm) {
                     console.log('success')
                     auth.currentUser.sendEmailVerification()
                         .then(() => {
-                            // Email verification sent!
-                            // ...
+                            alert('Регистрация успешна, вам было отправлено письмо для подтверждения')
+                            logOnForm.reset()
                         });
                 })
                     .catch((err) => {

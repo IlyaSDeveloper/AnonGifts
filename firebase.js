@@ -23,7 +23,7 @@ firebase.initializeApp(firebaseConfig)
 // const analytics = getAnalytics(app)
 export const auth = firebase.auth()
 export const db = firebase.firestore()
-export const endpoint = `https://firestore.googleapis.com/v1/projects/anongifts-44d60/databases/(default)/documents/`//${collection}/${document}
+export const endpoint = `https://firestore.googleapis.com/v1/projects/anongifts-2ce63/databases/(default)/documents/`//${collection}/${document}
 export const storageRef = firebase.storage().ref('images')
 // export const storage = getStorage('images')
 // export const ref = storageRef()
