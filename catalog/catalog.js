@@ -1,6 +1,14 @@
 import { endpoint } from '../firebase.js'
-const options = document.querySelectorAll('.form-check')
+const menuForm = document.querySelector('.dropdown-menu')
 const productList = document.querySelector('.content__products-list')
+const countElem = document.querySelector('.main__content-count')
+
+let filters = {
+    new: false,
+    priceUp: false,
+    priceDown: false,
+    popular: false,
+}
 
 const cardTamplate = (prodId, photo, title, price) => { return `
 <a href='./${prodId}' class='product-item'>
@@ -12,27 +20,49 @@ const cardTamplate = (prodId, photo, title, price) => { return `
 </div>
 </a>`}
 
-for (let i = 0; i < options.length; i++) {
-    options[i].addEventListener('click', (e) => {
-        e.stopPropagation()
-        console.log(options[i].children[0].value.toString())
-        console.log(options[i].children[0].checked )
-    })   
-}
+menuForm.addEventListener('change', e => {
+    e.stopPropagation()
+})
 
-(async function fetchProduct() {
+fetchProduct()
+
+
+async function fetchProduct() {
     axios.get(endpoint + 'products')
     .then(async response => {
-        const recieveProductData = response.data
-        console.log(recieveProductData.documents[1]);
+        let recieveProductData = response.data
+
+        if (countElem) {
+            countElem.textContent = `найдено товаров: ${recieveProductData.documents.length}`
+        }
+
+        //sorting
+        console.dir(menuForm['sort'].value);
+        switch (menuForm['sort'].value) {
+            case 'new':
+                recieveProductData.documents.sort(( a, b ) => new Date(a.updateTime) - new Date(b.updateTime))
+                break
+            case 'priceUp':
+                recieveProductData.documents = recieveProductData.documents.sort(( a, b ) => a.fields.price.stringValue - b.fields.price.stringValue)
+                break
+            case 'priceDown':
+                recieveProductData.documents = recieveProductData.documents.sort(( a, b ) => b.fields.price.stringValue - a.fields.price.stringValue)
+            default:
+                break;
+        }
+
+
+        fetchProduct()
+        productList.textContent = ''
+        
         for (let i = 0; i < recieveProductData.documents.length; i++) {
             displayProduct(recieveProductData.documents[i])
         }
     })
-})()
+}
 
 function displayProduct(product) {
-    console.log(product);
+    //  console.log(product);
     const {photo, name, price, count} = product.fields
     productList.insertAdjacentHTML('beforeend', cardTamplate(product.name.split('/')[product.name.split('/').length-1], 
     photo.stringValue, name.stringValue, price.stringValue))

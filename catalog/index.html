@@ -72,7 +72,7 @@
                     >
                     <a href="" class="disabled">каталог</a>
                 </div>
-                <span class="main__content-count">найдено товаров: 12</span>
+                <span class="main__content-count"></span>
                 <div class="main__content-filters">
                     <div class="dropdown">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -80,45 +80,50 @@
                             сортировка
                             <i class="fa fa-angle-down" aria-hidden="true"></i>
                         </a>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <form class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" value="new" id="new">
+                                <input type="radio" class="form-check-input" name="sort" value="all" id="all" checked>
+                                <label class="form-check-label" for="all">
+                                    все
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="sort" value="new" id="new">
                                 <label class="form-check-label" for="new">
                                     сначала новые
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" disabled value="stock" id="stock">
+                                <input type="radio" class="form-check-input" name="sort" disabled value="stock" id="stock">
                                 <label class="form-check-label" for="stock">
                                     по величине скидки
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" value="priceUp" id="priceUp">
+                                <input type="radio" class="form-check-input" name="sort" value="priceUp" id="priceUp">
                                 <label class="form-check-label" for="priceUp">
                                     по возростанию цены
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" value="priceDown" id="priceDown">
+                                <input type="radio" class="form-check-input" name="sort" value="priceDown" id="priceDown">
                                 <label class="form-check-label" for="priceDown">
                                     по убыванию цены
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" value="popular" id="popular">
+                                <input type="radio" class="form-check-input" name="sort" value="popular" id="popular">
                                 <label class="form-check-label" for="popular">
                                     по популярности
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" disabled value="feedback" id="feedback">
+                                <input type="radio" class="form-check-input" name="sort" disabled value="feedback" id="feedback">
                                 <label class="form-check-label" for="feedback">
-                                    с отзывами
+                                    сначала с отзывами
                                 </label>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="dropdown">
                         <a class="dropdown-toggle disabled-link" href="#" role="button" id="dropdownMenuLink"
@@ -134,16 +139,22 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <a class="dropdown-toggle disabled-link" href="#" role="button" id="dropdownMenuLink"
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             цена
                             <i class="fa fa-angle-down" aria-hidden="true"></i>
                         </a>
             
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <form class="multi-range-field my-5 pb-5">
+                                <input id="multi22" class="multi-range" type="range" />
+                              </form>
+                              
+                              <!-- Example -->
+                              <label for="ex3">Example</label>
+                              <input type="text" id="ex3" class="form-control" disabled>
+                              <label for="ex4">Example</label>
+                              <input type="text" id="ex4" class="form-control" disabled>
                         </div>
                     </div>
                     <a> очистить</a>

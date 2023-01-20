@@ -9,13 +9,13 @@ import 'https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js'
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBx-_dW8AyNV1qCjNuRO4h-JtCeTJUnbBc",
-  authDomain: "anongifts-44d60.firebaseapp.com",
-  projectId: "anongifts-44d60",
-  storageBucket: "anongifts-44d60.appspot.com",
-  messagingSenderId: "125878013445",
-  appId: "1:125878013445:web:df95defaa4ff47e0c4166c",
-  measurementId: "G-YBYFDLXK1Z"
+  apiKey: "AIzaSyA9EFn0LrI6V6w17Lp8wHfUpwGOGG-XkmM",
+  authDomain: "anongifts-2ce63.firebaseapp.com",
+  projectId: "anongifts-2ce63",
+  storageBucket: "anongifts-2ce63.appspot.com",
+  messagingSenderId: "1039690712304",
+  appId: "1:1039690712304:web:9969fdf21bdeae448a2e35",
+  measurementId: "G-BTD9SMFYDP"
 };
 
 // Initialize Firebase
