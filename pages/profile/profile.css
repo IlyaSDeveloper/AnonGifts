@@ -51,14 +51,12 @@
 }
 
 .content-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
   gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .content-list .product-item {
   text-align: center;
-  width: 20%;
   display: flex;
   color: #000;
   flex-direction: column;

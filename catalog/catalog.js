@@ -51,7 +51,9 @@ async function fetchProduct() {
                 break;
         }
 
-
+        function clear() {
+            document.querySelector('input[value="all"]').checked = true
+        }
         fetchProduct()
         productList.textContent = ''
         

@@ -70,9 +70,6 @@
 }
 .content-list {
     .product{
-        &-item {
-            width: 20%;
-        }
         &-image {
             &::before {
                 display: none; // remove it after including real items
