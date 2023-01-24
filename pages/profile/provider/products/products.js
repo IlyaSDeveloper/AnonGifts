@@ -42,7 +42,6 @@ async function fetchProdByUser(user) {
     await axios.get(endpoint + 'products/')
     .then(response => {
         const recieveProductData = response.data.documents
-        console.log(recieveProductData[1].fields);
         recieveProductData.forEach(prod => {
             if (prod.fields.providerId.stringValue === user.uid) {
                 displayProduct(prod)
@@ -53,7 +52,6 @@ async function fetchProdByUser(user) {
 }
 
 function displayProduct(product) {
-    console.log(product);
     const {photo, name, price, count} = product.fields
     productBox.insertAdjacentHTML('beforeend', cardTamplate(photo.arrayValue.values[0].stringValue, name.stringValue,
          price.stringValue, count.stringValue))
