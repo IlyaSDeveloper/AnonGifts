@@ -28,6 +28,15 @@
                 min-width: 13em;
             }
         }
+        .form-clean {
+            cursor: pointer;
+            color: #000;
+            &:hover, 
+            &:focus, 
+            &:active {
+                color: rgb(185, 24, 24);
+            }
+        }
         .form-check {
             display: block;
             min-height: 1.5rem;

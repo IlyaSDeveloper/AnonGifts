@@ -20,7 +20,7 @@
         <div class="container">
             <nav class="nav">
                 <div class="nav__block">
-                    <a href="/" class="nav__item nav-item__logo">логотип</a>
+                    <a href="/" class="nav__item nav-item__logo"><img src="../../../../../icons/logoIcon.svg" alt="logo icon"></a>
                     <div class="nav__item nav-item__city"></div>
                 </div>
                 <div class="nav__block nav-block__center">
@@ -92,20 +92,11 @@
                                 <textarea name="full-desc" id="full-desc" cols="" rows="6" placeholder="Подробное описание товара"></textarea>
                                 <label for="count">Количество товара на складе:<input id="count" name="count" type="number">шт.</label>
                                 <label for="price">Стоимость товара:<input id="price" name="price" type="text">р.</label>
-                                <label class="upload-place" for="photo">Фото товара:<input id="photo" name="photo" accept="image/*" multiple 
+                                <label class="upload-place" for="photo">Фото товара:<input id="photo" name="photo" accept=".png, .jpg, .jpeg" multiple 
                                     type="file" class="form-control-file d-none" id="photo">
-                                    <button class="img-upload upload-btn" type="button">Загрузить</button></label>
+                                    <button class="img-upload upload-btn" onclick="photo.click()" type="button">Загрузить</button></label>
                                 <div class="image-box">
-                                    <div class="img"></div>
-                                    <div class="img"></div>
-                                    <div class="img"></div>
-                                    <div class="img"></div>
-                                    <div class="img"></div>
-                                    <div class="img"></div>
-                                    <div class="img"></div>
-                                    <div class="img"></div>
-                                    <div class="img"></div>
-                                    <div class="img"></div>
+
                                 </div>
                                 <label class="upload-place" for="video">Видео товара:<input name="video[]" id="video" accept="video/*" multiple
                                     type="file" class="form-control-file d-none" id="video">
@@ -122,7 +113,7 @@
     <footer>
         <div class="container">
             <div class="short-links">
-                <div class="short-list logo"><a href="/">Логотип</a></div>
+                <div class="short-list logo"><a href="/"><img src="../../../../../icons/logoIcon.svg" alt="logo icon"></a></div>
                 <div class="short-list customers">
                     <h5 class="castomer-title">Покупателям</h3>
                     <a href="/" class="customers-link">Каталог</a>
@@ -151,12 +142,18 @@
             <div class="copyright py-5">
                 <div class="copyright-text">
                     All rights reserved
-                </div>
-                <div class="copyright-buttons">
-                    <button class="copyright-button"></button>
-                    <button class="copyright-button"></button>
-                    <button class="copyright-button"></button>
-                    <button class="copyright-button"></button>
+                </div>   
+                    <ul class="copyright-delivery">
+                        <li class="delivery-service yandex">
+                            <img src="../../../../icons/yandex.svg" alt="yandex">
+                        </li>
+                        <li class="delivery-service russmail">
+                            <img src="../../../../icons/russmail.svg" alt="russia mail">
+                        </li>
+                        <li class="delivery-service cdek">
+                            <img src="../../../../icons/cdek.svg" alt="cdek">
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

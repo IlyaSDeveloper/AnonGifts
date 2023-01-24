@@ -5,7 +5,7 @@ const productBox = document.querySelector('.content-list')
 
 const cardTamplate = (photo, title, price, count) => { return `
 <div class='product-item'>
-<div class='product-image'><img src="${photo}" loading='lazy' /></div>
+<div class='product-image'><img src="${photo}" /></div>
 <div class="product-name">${title}</div>
 <div class="product-price">${price.replace(/\B(?=(?:\d{3})+(?!\d))/g, ' ')} р.</div>
 <div class="product-footer">
@@ -26,29 +26,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
 })
 
-async function fetchProdByUser(user) {
-    await axios.get(endpoint + 'users/' + user.uid)
-    .then(async response => {
-        const recieveData = response.data.fields
-        await recieveData.product.arrayValue.values.forEach(prodId => {
-            if (prodId) {
-                fetchProduct(prodId)
-            }
-        })
-    })
-}
+// async function fetchProdByUser(user) {
+//     await axios.get(endpoint + 'users/' + user.uid)
+//     .then(async response => {
+//         const recieveData = response.data.fields
+//         await recieveData.product.arrayValue.values.forEach(prodId => {
+//             if (prodId) {
+//                 fetchProduct(prodId)
+//             }
+//         })
+//     })
+// }
 
-async function fetchProduct(prodId) {
-    axios.get(endpoint + 'products/' + prodId.stringValue)
-    .then(async response => {
-        const recieveProductData = response.data
-            displayProduct(recieveProductData)
+async function fetchProdByUser(user) {
+    await axios.get(endpoint + 'products/')
+    .then(response => {
+        const recieveProductData = response.data.documents
+        console.log(recieveProductData[1].fields);
+        recieveProductData.forEach(prod => {
+            if (prod.fields.providerId.stringValue === user.uid) {
+                displayProduct(prod)
+            }
+        });
+
     })
 }
 
 function displayProduct(product) {
     console.log(product);
     const {photo, name, price, count} = product.fields
-    productBox.insertAdjacentHTML('beforeend', cardTamplate(photo.stringValue, name.stringValue,
+    productBox.insertAdjacentHTML('beforeend', cardTamplate(photo.arrayValue.values[0].stringValue, name.stringValue,
          price.stringValue, count.stringValue))
 }

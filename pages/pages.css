@@ -84,11 +84,20 @@ header .nav .nav-item__social-link.user {
   background-image: url(../icons/user.svg);
   cursor: pointer;
 }
+header .nav .nav-item__social-link.user:hover {
+  filter: invert(34%) sepia(99%) saturate(411%) hue-rotate(1deg) brightness(100%) contrast(89%);
+}
 header .nav .nav-item__social-link.bag {
   background-image: url(../icons/bag.svg);
 }
+header .nav .nav-item__social-link.bag:hover {
+  filter: invert(34%) sepia(99%) saturate(411%) hue-rotate(1deg) brightness(100%) contrast(89%);
+}
 header .nav .nav-item__social-link.like {
   background-image: url(../icons/like.svg);
+}
+header .nav .nav-item__social-link.like:hover {
+  filter: invert(34%) sepia(99%) saturate(411%) hue-rotate(1deg) brightness(100%) contrast(89%);
 }
 header .nav .nav-item__social-links {
   justify-content: flex-end;
@@ -103,6 +112,9 @@ header .nav .nav-item__contact-us {
 header .nav .nav-item__contact-us::before {
   content: "\f0e0";
   margin-right: 5px;
+}
+header .nav .nav-item__contact-us:hover {
+  color: #956814;
 }
 header .nav .nav-item__search-box .form-control {
   border: 1px solid #000;
@@ -185,11 +197,17 @@ footer .short-links .social-links a {
   text-decoration: none;
   color: white;
 }
+footer .short-links .social-links a:hover {
+  color: #eebd19;
+}
 footer .short-links .social-links .zen {
   background-image: url("../icons/zen.svg");
   height: 24px;
   width: 24px;
   margin-top: 5px;
+}
+footer .short-links .social-links .zen:hover {
+  filter: invert(34%) sepia(99%) saturate(411%) hue-rotate(1deg) brightness(100%) contrast(89%);
 }
 footer .copyright {
   display: flex;
@@ -199,13 +217,14 @@ footer .copyright .copyright-text::before {
   content: "©";
   font-size: 16px;
 }
-footer .copyright .copyright-buttons {
+footer .copyright .copyright-delivery {
   display: flex;
   gap: 15px;
 }
-footer .copyright .copyright-buttons .copyright-button {
+footer .copyright .copyright-delivery .delivery-service {
   display: flex;
   vertical-align: middle;
-  min-width: 77px;
-  background-color: #8D8686;
+}
+footer .copyright .copyright-delivery .delivery-service img {
+  width: 100%;
 }/*# sourceMappingURL=pages.css.map */

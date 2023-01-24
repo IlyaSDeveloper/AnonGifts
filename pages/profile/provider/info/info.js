@@ -8,10 +8,10 @@ const removeUser = document.querySelector('.info-form_account-remove')
 
 auth.onAuthStateChanged(user => {
   if (user) {
-    db.collection('users').doc(user.uid).onSnapshot(doc => { 
-        const recieveData = doc.data()
-        if (recieveData) {  
-          userData['name'].value = recieveData.name || '',
+    db.collection('users').doc(user.uid).onSnapshot(doc => {
+      const recieveData = doc.data()
+      if (recieveData) {
+        userData['name'].value = recieveData.name || '',
           userData['lastname'].value = recieveData.lastname || '',
           userData['surname'].value = recieveData.surname || '',
           userData['gender'].value = recieveData.gender || '',
@@ -22,9 +22,9 @@ auth.onAuthStateChanged(user => {
           userData['address'].value = recieveData.address || '',
           userData['passportID'].value = recieveData.passportID || ''
 
-          userData['passportPhoto'].src = recieveData.photoURL || ''
-        }
-      })
+        userData['passportPhoto'].src = recieveData.photoURL || ''
+      }
+    })
 
 
     userData.addEventListener('input', () => {
@@ -50,10 +50,10 @@ auth.onAuthStateChanged(user => {
       })
 
 
-      userData['photoURL'].addEventListener('change', function(evt) {
+      userData['photoURL'].addEventListener('change', function (evt) {
         const file = evt.target.files[0] // upload the first file only
         const thisRef = storageRef.child(file.name)
-        thisRef.put(file).then( res => {
+        thisRef.put(file).then(res => {
           thisRef.getDownloadURL().then(url => {
             db.collection('users').doc(user.uid).set({
               photoURL: url

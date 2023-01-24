@@ -24,6 +24,13 @@
 .main__content-filters .dropdown-menu {
   min-width: 13em;
 }
+.main__content-filters .form-clean {
+  cursor: pointer;
+  color: #000;
+}
+.main__content-filters .form-clean:hover, .main__content-filters .form-clean:focus, .main__content-filters .form-clean:active {
+  color: rgb(185, 24, 24);
+}
 .main__content-filters .form-check {
   display: block;
   min-height: 1.5rem;

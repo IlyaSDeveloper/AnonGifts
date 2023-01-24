@@ -1,56 +1,63 @@
 import '../../../pages.js'
-import { auth, db, endpoint } from '../../../../firebase.js'
+import { auth, db, endpoint, storageRef } from '../../../../firebase.js'
 import 'https://unpkg.com/imask'
 
 const createProductForm = document.querySelector('.create-product-form')
+const imageBox = document.querySelector('.image-box')
 
-if (createProductForm) {
-    createProductForm.addEventListener('submit', e => {
-        e.preventDefault();
-        auth.onAuthStateChanged(async user => {
-            if (user) {
-                let productIds = []
-                axios.get(endpoint + 'users/' + user.uid)
-                .then(async response => {
-                    const recieveData = response.data.fields
-                    await recieveData.product.arrayValue.values.forEach(prodId => {
-                        productIds.push(prodId.stringValue || prodId)
-                    })
-                })
+auth.onAuthStateChanged(async user => {
+    if (user) {
+        if (createProductForm) {
+            let photoUrls = []
+            console.log('523');
+            createProductForm['photo'].addEventListener('change', function (elem) {
+                const files = elem.currentTarget.files
+                for (let i = 0; i < files.length; i++) {
+                    const thisRef = storageRef.child(files[i].name)
+                    thisRef.put(files[i]).then(res => {
+                        thisRef.getDownloadURL().then(url => {
+                            photoUrls.push(url)
+                            imageBox.insertAdjacentHTML('beforeend',`<img src="${url}" class="img"
+                             alt="${files[i].name.split('.')[0]}" />`)
+                        }).catch(e => console.log('Get link error' + e))
+                        console.log('Загрузка завершена!');
+                    }).catch(e => console.log('Error' + e))
+                }
+            })
+
+            console.log(photoUrls);
+            createProductForm.addEventListener('submit', e => {
+                e.preventDefault();
                 db.collection('products').add({
                     name: createProductForm['product-label'].value.trim(),
                     shortDesc: createProductForm['short-desc'].value.trim(),
                     fullDesc: createProductForm['full-desc'].value.trim(),
                     count: createProductForm['count'].value.trim(),
                     price: createProductForm['price'].value.trim(),
+                    providerId: user.uid,
                     // photo: createProductForm['photo'].files[0].name,
-                    photo: `https://picsum.photos/290/310?a=${createProductForm['product-label'].value}`
+                    photo: photoUrls
                     //video
                 }).then(async (prod) => {
-                    productIds.push(prod.id);
+                    createProductForm.reset()
                     console.log('Product added to collection')
-                    db.collection('users').doc(user.uid).set({
-                        product: productIds
-                        }, { merge: true }).then(() => {
-                            console.log('Product added to user')
-                            createProductForm.reset()
-                        }).catch(() => console.log('Something bad!'))
+                    alert('Продукт добавлен')
                 }).catch((error) => {
                     console.log(error, 'failure')
                     // An error occurred
                     // ...
                 })
-            }
-        })
-    })
-} else console.log('form not found');
-  
 
-let priceMask = IMask(createProductForm['price'], {
-    mask: Number,
-    scale: 2,
-    thousandsSeparator: ' ',
-    normalizeZeros: true,
-    padFractionalZeros: true,
-  });
-  priceMask.updateValue()
+            })
+        } else console.log('form not found');
+    }
+})
+
+// let priceMask = IMask(createProductForm['price'], {
+//     mask: Number,
+//     scale: 2,
+//     thousandsSeparator: ' ',
+//     normalizeZeros: true,
+//     padFractionalZeros: true,
+// });
+// priceMask.updateValue()
