@@ -186,6 +186,11 @@ footer .short-links .contacts-link {
   color: black;
   display: flex;
 }
+footer .short-links .info-link:hover,
+footer .short-links .customers-link:hover,
+footer .short-links .contacts-link:hover {
+  color: white;
+}
 footer .short-links .social-links {
   list-style: none;
   display: flex;

@@ -175,6 +175,9 @@ footer {
             text-decoration: none;
             color: black;
             display: flex;
+            &:hover {
+                color: white;
+            }
         }
         .social-links {
             list-style: none;
